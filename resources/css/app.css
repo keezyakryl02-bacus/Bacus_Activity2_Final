@@ -6,6 +6,60 @@
 @source '../**/*.js';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    /* Custom Fonts */
+    --font-serif: 'Lora', Georgia, serif;
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+
+    /* Ghibli Aesthetic Color Palette */
+    --color-ghibli-cream: #fdfaf0;
+    --color-ghibli-forest: #2d5a3f;
+    --color-ghibli-moss: #5f8d6d;
+    --color-ghibli-gold: #c6a15e;
+    --color-ghibli-text: #3c3c3c;
+    
+    /* Paper Texture Graphic Asset */
+    --background-image-paper: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+}
+
+/* --- CUSTOM LAYER / UTILITY STYLES --- */
+
+body {
+    background-color: var(--color-ghibli-cream);
+    background-image: var(--background-image-paper);
+    font-family: var(--font-serif);
+    color: var(--color-ghibli-text);
+}
+
+/* Custom Hero Layout using your design specifications */
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.4)), 
+                url('/images/hero.png'); /* Ensure your background asset is inside public/images/ */
+    background-size: cover;
+    background-position: center 30%;
+}
+
+/* Transparent painterly overlay for depth */
+.hero-section::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: var(--background-image-paper);
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+/* Custom Title Shadows and First-Line highlights */
+.woven-text {
+    text-shadow: 3px 3px 0px var(--color-ghibli-forest);
+}
+
+.woven-text::first-line {
+    color: var(--color-ghibli-gold);
+}
+
+/* Desktop alignment overrides matching your pure PHP setup */
+@media (min-width: 992px) {
+    .hero-section {
+        background-position: center 20%;
+    }
 }
